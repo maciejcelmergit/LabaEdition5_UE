@@ -54,7 +54,6 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 		GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(Start, CameraRotation);
 		End = Start + CameraRotation.Vector() * GrabRange;
-
 		PhysicsHandle->SetTargetLocationAndRotation(End, CameraRotation);
 	}
 }
