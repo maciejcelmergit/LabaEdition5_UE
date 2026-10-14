@@ -65,6 +65,7 @@ void UGrabberComponent::Grab()
 	if (PhysicsHandle && PhysicsHandle->GetGrabbedComponent())
 	{
 		PhysicsHandle->ReleaseComponent();
+		GrabbedItemUpdated.Broadcast(nullptr);
 		return;
 	}
 
@@ -88,6 +89,8 @@ void UGrabberComponent::Grab()
 		// chwycic obiekt
 		UE_LOG(LogTemp, Warning, TEXT("Grabbing object: %s"), *Comp->GetName());
 		PhysicsHandle->GrabComponentAtLocationWithRotation(Comp, FName(), Result.Location, CameraRotation);
+
+		GrabbedItemUpdated.Broadcast(Comp->GetOwner());
 	}
 }
 
